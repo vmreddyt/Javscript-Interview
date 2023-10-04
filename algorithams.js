@@ -116,6 +116,14 @@ function factorialFun(n) {
     }
     return fact;
 }
+function recursiveFactorialFun(n) {
+    // Big 0 - O(n)- LInear - recursive fun
+    if(n === 0){
+        return 1;
+    }
+    return n * recursiveFactorialFun(n-1);
+   
+}
 // console.log(factorialFun(5))
 
 function primeFun(n){
@@ -160,3 +168,46 @@ if( n < 1) {
  return ( n & (n-1)) === 0;
 }
 // console.log(powerOfTwo(1))
+// ///////////////////////////////////////////////////////
+
+
+// Search Algorithams
+// 1. Linear Search
+// 2. Binary search
+
+// Linear Search
+// Big O - O(n) - Linear
+function linearSeasrch(array, item){
+    for (let index = 0; index < array.length; index++) {
+        if(item === array[index]){
+           return  index;
+        } 
+    }
+    return -1;
+}
+// console.log(linearSeasrch([15,2,3,10,30,4],4));
+// Binary search
+function binarySearch(array, item) {
+    // Big o notation - O (log n)
+    let sortedArray = array.sort((a, b) => a - b);
+    // console.log(sortedArray);
+    let leftIndex = 0;
+    let rigthIndex = array.length - 1;
+    while (leftIndex <= rigthIndex) {
+        let midIndex = Math.floor((leftIndex + rigthIndex) / 2);
+        if (item === sortedArray[midIndex]) {
+            // console.log(midIndex);
+            return midIndex;
+        }
+        if (item < sortedArray[midIndex]) {
+            rigthIndex = midIndex - 1;
+        } else {
+            leftIndex = midIndex + 1;
+        }
+    }
+
+    return -1;
+}
+console.log(binarySearch([15,2,6,3,1,10,30,4],30));
+
+
