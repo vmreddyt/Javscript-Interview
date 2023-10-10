@@ -54,3 +54,26 @@ console.log(person2);
 console.log(superHero1);
 console.log(superHero1.fightCrime());
 console.log('index2'); 
+
+
+// Pollyfill similar to mybind
+var name1 = {
+    firstName: 'Venkat',
+    lastName: 'Reddy'
+}
+
+var printName  = function(surname, middlename) {
+    console.log(this.firstName + ' ' + this.lastName + ' ' + surname + ' ' + middlename);
+}
+var printMYname = printName.bind(name1, 'Tamatam');
+printMYname('Maheswara');
+
+Function.prototype.mybind = function(...args) {
+    let obj = this,
+    params = args.slice(1);
+    return function (...args1) {
+        obj.apply(args[0], [...params, ...args1]);
+    }
+}
+var printMYname1 = printName.mybind(name1, 'Tamatam');
+printMYname1('Maheswara');

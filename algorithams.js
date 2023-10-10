@@ -208,6 +208,89 @@ function binarySearch(array, item) {
 
     return -1;
 }
-console.log(binarySearch([15,2,6,3,1,10,30,4],30));
+// console.log(binarySearch([15,2,6,3,1,10,30,4],30));
 
+function recursiveBinarySearch(array, target){
+       // Big o notation - O (log n)
+  return search(array, target, 0, array.length-1);
+}
+function search(array, target, leftIndex, rigthIndex){
+    if(leftIndex > rigthIndex){
+        return -1;
+    }
+    let midIndex = Math.floor((leftIndex + rigthIndex)/2);
+    if(target === array[midIndex]){
+        return midIndex;
+    }
+    if(target < array[midIndex]){
+      return  search(array, target, leftIndex, midIndex - 1);
+    } else {
+       return search(array, target, midIndex + 1, rigthIndex);
+    }
+}
+// console.log(recursiveBinarySearch([1,3,5,7,9,23,67,88,90], 90))
 
+// Sorting Algoithams
+// Bubble,Insertion, Quik and Merge sort
+
+function bubbleSort(array){
+     // Big o notation - O (n2)
+    let swapped;
+    do {
+        swapped = false;
+        for (let index = 0; index < array.length - 1; index++) {
+    
+            if(array[index] > array[index+1]){
+                let temp = array[index];
+                array[index] = array[index+1];
+                array[index+1] = temp; 
+                swapped = true;
+            }
+            
+        }
+    } while (swapped)
+    return array;
+}
+// console.log(bubbleSort([23,-1,-67,5,5,-5,54,8,6,3,2,9]));
+
+function insertSort(array){
+      // Big o notation - O (n2)
+
+    for (let index = 1; index < array.length; index++) {
+        let nummberToInsert = array[index];
+        let j = index - 1;
+        while (j >= 0 && array[j] > nummberToInsert) {
+            array[j+1] = array[j];
+            j = j -1;
+        }
+        array[j+1] = nummberToInsert;
+        
+    }
+    // return array;
+}
+let xx = [23,-1,-67,5,5,-5,54,8,6,3,2,9];
+insertSort(xx);
+
+// Quick sort
+// 1. Pick First Element pivot
+// 2. Pick last Element pivot(Our approach)
+// 3. Pick Random Element pivot
+// 4. Pick median as pivot
+
+function quickSort(array){
+    
+}
+quickSort(xx);
+console.log(xx);
+
+// Verify pass by reference
+// function modifyObj(obj) {
+//     console.log(obj);
+//     obj['name'] = 'xyzddd';
+// }
+// let xyz = {
+//     name: 'abc'
+// }
+// console.log(xyz);
+// modifyObj(xyz);
+// console.log(xyz)
