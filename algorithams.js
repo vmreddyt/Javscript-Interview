@@ -278,9 +278,49 @@ insertSort(xx);
 // 4. Pick median as pivot
 
 function quickSort(array){
-    
+    // worstcase complexity o(n2)
+    // Avg case - O(nlogn)
+
+    if(array.length < 2) {
+        return array;
+    }
+    let pivot = array[array.length -1];
+    let leftArray = [], rigthArray = [];
+    for (let index = 0; index < array.length - 1; index++) {
+       if(array[index] < pivot )  {
+        leftArray.push(array[index]);
+    } else{
+        rigthArray.push(array[index]);
+       }
+    } 
+    return [ ...quickSort(leftArray), pivot, ...quickSort(rigthArray)] 
 }
 quickSort(xx);
+
+
+// Merge sort
+// Big o Notation O(nlogn)
+function mergeSort(array){
+    if(array.length < 2) {
+        return array;
+    }
+    let mid = Math.floor(array.length/2);
+    let leftArray = array.slice(0, mid);
+    let rigthArray = array.slice(mid);
+    return merge(mergeSort(leftArray), mergeSort(rigthArray));
+}
+function merge(leftArray, rigthArray){
+    const sortedArray = [];
+    while(leftArray.length && rigthArray.length){
+        if(leftArray[0] <= rigthArray[0]){
+            sortedArray.push(leftArray.shift())
+        } else {
+            sortedArray.push(rigthArray.shift())
+        }
+    }
+    return [...sortedArray, ...leftArray, ...rigthArray];
+}
+mergeSort(xx);
 console.log(xx);
 
 // Verify pass by reference
