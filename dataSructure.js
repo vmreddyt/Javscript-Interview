@@ -1,7 +1,7 @@
 console.log("============== START::Data Structures=============")
 console.log("============== Array::Data Structures=============")
 
-const array = [1,2,3, 'Venkat'];
+const array = [1, 2, 3, 'Venkat'];
 array.push(4)
 array.unshift(0)
 array.pop()
@@ -12,9 +12,9 @@ for (const iterator of array) {
 console.log("============== Object::Data Structures=============")
 const obj = {
     name: 'Venkat',
-    age:32,
-    'key-there':true,
-    sayMyName: function(){
+    age: 32,
+    'key-there': true,
+    sayMyName: function () {
         console.log(this.name);
     }
 }
@@ -30,14 +30,14 @@ for (const key in obj) {
     if (Object.hasOwnProperty.call(obj, key)) {
         const element = obj[key];
         console.log(element, key);
-        
+
     }
 }
 for (const [key, value] of Object.entries(obj)) {
     console.log(`${key}: ${value}`);
-  }
+}
 console.log("============== Set::Data Structures=============")
-const set = new Set([1,2,3, 'Venkat'])
+const set = new Set([1, 2, 3, 'Venkat'])
 set.add(4);
 set.add(4);
 console.log(set.has(3));
@@ -49,7 +49,7 @@ for (const iterator of set) {
 }
 
 console.log("============== MAp::Data Structures=============")
-const map = new Map([['a',1],['b',2]]);
+const map = new Map([['a', 1], ['b', 2]]);
 map.set('c', 9);
 map.delete('b');
 console.log(map.size);
@@ -61,17 +61,17 @@ for (const [key, value] of map) {
 
 console.log("============== Stack::Data Structures=============")
 class Stack {
-    constructor(){
+    constructor() {
         this.itemes = [];
     }
-    push(element){
-       this.itemes.push(element);
+    push(element) {
+        this.itemes.push(element);
     }
-    pop(){
-       return this.itemes.pop();
+    pop() {
+        return this.itemes.pop();
     }
-    peek(){
-        return this.itemes[this.itemes.length-1];
+    peek() {
+        return this.itemes[this.itemes.length - 1];
     }
     isEmpty() {
         return this.itemes.length == 0;
@@ -79,7 +79,7 @@ class Stack {
     size() {
         return this.itemes.length;
     }
-    print(){
+    print() {
         console.log(this.itemes.toString());
     }
 }
@@ -96,29 +96,29 @@ newStack.print();
 console.log("============== Queue With Array::Data Structures=============")
 
 class Queue {
-    constructor(){
+    constructor() {
         this.items = [];
     }
     enQueue(element) {
         this.items.push(element);
     }
-    deQueue(){
+    deQueue() {
         this.items.shift();
     }
-    peek(){
-        if(this.isEmpty){
+    peek() {
+        if (this.isEmpty) {
             return this.items[0];
         } else {
             return null;
         }
     }
-    isEmpty(){
+    isEmpty() {
         return this.items.length == 0;
     }
     size() {
         return this.items.length;
     }
-    print(){
+    print() {
         console.log(this.items.toString());
     }
 }
@@ -133,31 +133,31 @@ queue.print()
 console.log(queue.peek())
 console.log("============== Queue With Object::Data Structures=============")
 class QueueObj {
-    constructor(){
+    constructor() {
         this.items = {};
         this.front = 0;
         this.rear = 0;
     }
-    enQueue(element){
+    enQueue(element) {
         this.items[this.rear] = element;
         this.rear++;
     }
-    deQueue(){
+    deQueue() {
         const item = this.items[this.front];
         delete this.items[this.front];
         this.front++;
         return item;
     }
-    isEmpty(){
+    isEmpty() {
         return this.front - this.rear === 0;
     }
-    peek(){
+    peek() {
         return this.items[this.front];
     }
-    size(){
-        return this.rear -this.front;
+    size() {
+        return this.rear - this.front;
     }
-    print(){
+    print() {
         console.log(this.items);
     }
 }
@@ -175,56 +175,56 @@ console.log(objQueue.deQueue());
 objQueue.print()
 console.log("============== Circular Queuee::Data Structures=============")
 class CircularQueue {
-    constructor(capacity){
+    constructor(capacity) {
         this.items = new Array(capacity);
         this.capacity = capacity;
         this.currentLength = 0;
         this.rear = -1;
         this.front = -1;
     }
-    isFull(){
-      return this.capacity === this.currentLength;
+    isFull() {
+        return this.capacity === this.currentLength;
     }
-    isEmpty(){
+    isEmpty() {
         return this.currentLength === 0;
     }
-    enQueue(element){
-        if(!this.isFull()){
+    enQueue(element) {
+        if (!this.isFull()) {
             this.rear = (this.rear + 1) % this.capacity;
             this.items[this.rear] = element;
             this.currentLength += 1;
-            if(this.front === -1){
+            if (this.front === -1) {
                 this.front = this.rear;
             }
         }
     }
-    deQueue(){
-        if(this.isEmpty()){
+    deQueue() {
+        if (this.isEmpty()) {
             return null;
         }
         const item = this.items[this.front];
         this.items[this.front] = null;
         this.front = (this.front + 1) % this.capacity;
         this.currentLength -= 1;
-        if(this.isEmpty()){
+        if (this.isEmpty()) {
             this.front = -1;
             this.rear = -1;
         }
         return item;
     }
-    peek(){
-        if(!this.isEmpty()){
+    peek() {
+        if (!this.isEmpty()) {
             return this.items[this.front];
         }
         return null;
     }
-    print(){
-        if(this.isEmpty()){
-           console.log('Queue is Empty'); 
+    print() {
+        if (this.isEmpty()) {
+            console.log('Queue is Empty');
         } else {
             let i;
             let str = '';
-            for(i = this.front; i !== this.rear; i = (i + 1) % this.capacity) {
+            for (i = this.front; i !== this.rear; i = (i + 1) % this.capacity) {
                 str += this.items[i] + ' ';
             }
             str += this.items[i];
@@ -243,4 +243,3 @@ queee.print()
 console.log(queee.deQueue());
 queee.print()
 console.log(queee.peek());
-console.log("============== END::Data Structures=============")
