@@ -1,3 +1,6 @@
+// ============= HAsh Table =========
+console.log("============== HAsh Table::Data Structures=============")
+
 class HashTable {
     constructor(size){
         this.table = new Array(size);
@@ -12,17 +15,50 @@ class HashTable {
     }
     set(key, value){
         const index = this.hash(key);
-        this.table[index] = value;
+        // this.table[index] = [[key, value]];
+        let bucket = this.table[index];
+        if (!bucket) {
+            this.table[index] = [];
+            this.table[index].push([key, value]);
+            // bucket = [[key, value]];
+        } else {
+            const sameKeyItem = bucket.filter(item => item[0] == key);
+            
+            if (this.table[index][i][0] === sameKeyItem[0]) {
+                this.table[index][i][1] = value;
+            } else {
+                this.table[index].push([key, value]);
+                // bucket.push([key, value])
+            }   
+        }
+        this.size++;
     }
     get(key){
         const index = this.hash(key);
-       return  this.table[index];
+    //    return  this.table[index];
+    const bucket = this.table[index];
+        if(bucket){
+            const sameKeyItem = bucket.find(item => item[0] == key);
+            if (sameKeyItem) {
+               return sameKeyItem[1]; 
+            }
+        }
+        return undefined;
+
     }
     remove(key){
         const index = this.hash(key);
-        this.table[index] = undefined;
+        // this.table[index] = undefined;
+        const bucket = this.table[index];
+        if(bucket){
+            const sameKeyItem = bucket.find(item => item[0] == key);
+            if (sameKeyItem) {
+               bucket.splice(bucket.indexOf(sameKeyItem), 1) 
+            } 
+        }
     }
     display(){
+        console.log(this.table);
         for (let i = 0; i < this.table.length; i++) {
            if(this.table[i]){
             console.log(i, this.table[i]);
@@ -40,4 +76,5 @@ table.display()
 console.log(table.get('name'));
 // table.remove('name')
 table.set('nmae', 'venkat Reddy')
+table.set('nmeadd', 'venkat1 Reddy')
 table.display()
