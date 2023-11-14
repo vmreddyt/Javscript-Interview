@@ -164,14 +164,18 @@ function reverseNUmber(num){
 // Write a program to print to the screen number 1 to n, For multiples of e print fizz; for multiples of 5 rint buzz; for mutliples of 3 qnd 5 printfizzbuzz.
 function fizzBuzz(num){
     for (let index = 1; index <= num; index++) {
-       if(index %3 === 0 && index % 5  === 0) {
-        console.log('fizzbuzz');
-        ++index;
-       }
-       if( index % 3 === 0) {
-        console.log('fizz');
-        ++index;
-       }
+    //    if(index %3 === 0 && index % 5  === 0) {
+    //     console.log('fizzbuzz');
+    //     ++index;
+    //    }
+    //    if( index % 3 === 0) {
+    //     console.log('fizz');
+    //     ++index;
+    //    }
+       if(index % 15 === 0) {
+           console.log('fizzbuzz');
+           ++index;
+        }
        if(index % 5 === 0) {
            console.log('buzz');
            ++index;
@@ -185,7 +189,7 @@ function fizzBuzz(num){
         
     }
 }
-// console.log(fizzBuzz(15));
+// console.log(fizzBuzz(40));
 // ------------------------------------------------
 // Clasical chunked array
 var chunnkeArrray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -195,8 +199,10 @@ function chunnkAray(arr, n) {
     for (let index = 0; index < arr.length; index++) {
         var lastArray = finalArray[finalArray.length - 1];
         if(!lastArray || lastArray.length === n) {
+            console.log('if' +index);
             finalArray.push([arr[index]])
         } else {
+            console.log('else'+ index);
             lastArray.push(arr[index]);
         }
         // if (arr[index] % n === 0) {
@@ -402,14 +408,66 @@ const zeroMatrix = (matrix, n) => {
     return matrix;
 }
 let matrix = [[2,4,0],[1,4,4],[5,7,8]]
-console.log(zeroMatrix(matrix,3));
+// console.log(zeroMatrix(matrix,3));
 // ------------------------------------------------
 
 function curry(a){
+    // debugger;
     return function inner(b) {
         return b ? curry(a + b)  : a;
     }
 }
 
-// console.log(curry(2)(3)(4)(5)(11)(4)())
+console.log(curry(2)(3)(4)(5)(11)(4)())
 // ------------------------------------------------
+
+
+var a =  ['{','}','[','(',')',']'];
+
+// function stackArray(s) {
+//     let stack = [];
+//     for (var i = 0; i < s.length; i++) {
+//         let lastChar = stack[stack.length - 1];
+//         if (s[i] == '(' || s[i] == '{' || s[i] == '[') {
+//             stack.push(s[i])
+//         } else if (lastChar == '(' && s[i] == ')' || lastChar == '{' && s[i] == '}' || lastChar == '[' && s[i] == ']') {
+//             stack.pop();
+//         } else return false;
+//     }
+//     return stack.length ? false : true
+// }
+function stackArray(s) {
+    let stack = [];
+    let map = {
+        ')' : '(',
+        '}' : '{',
+        ']' : '['
+    }
+    for (var i = 0; i < s.length; i++) {
+        if (s[i] == '(' || s[i] == '{' || s[i] == '[') {
+            stack.push(s[i])
+        } else if (stack[stack.length - 1] == map[s[i]]){
+            stack.pop();
+        } else return false;
+    }
+    return stack.length ? false : true
+}
+console.log(stackArray(a))
+
+
+
+function xyz(){
+    var x = []
+    var abc = ['Maheshwara Reddy','viswa reddy','sachine tendulakr'];
+    abc.forEach(element => {
+        result = { name: element, shortName: getFirstChar(element), imaage: 'sample'}
+        x.push(result)
+    });
+    console.log(x)
+}
+
+function getFirstChar(obj){
+    var newArray =obj.split(' ');
+    return newArray[0].charAt(0) + newArray[1].charAt(0)
+}
+xyz();

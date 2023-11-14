@@ -169,7 +169,7 @@ if( n < 1) {
 }
  return ( n & (n-1)) === 0;
 }
-// console.log(powerOfTwo(1))
+// console.log(powerOfTwo(8))
 // ///////////////////////////////////////////////////////
 
 
@@ -271,7 +271,7 @@ function insertSort(array){
     // return array;
 }
 let xx = [23,-1,-67,5,5,-5,54,8,6,3,2,9];
-insertSort(xx);
+// insertSort(xx);
 
 // Quick sort
 // 1. Pick First Element pivot
@@ -297,7 +297,8 @@ function quickSort(array){
     } 
     return [ ...quickSort(leftArray), pivot, ...quickSort(rigthArray)] 
 }
-quickSort(xx);
+console.log('Quick sort========', quickSort(xx));
+// quickSort(xx);
 
 
 // Merge sort

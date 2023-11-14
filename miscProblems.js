@@ -20,11 +20,11 @@ function climbingStaircase(n){
 for (let index = 2; index < n; index++) {
     numberOfWays[index] = numberOfWays[index - 1] + numberOfWays[index - 2];
 }
- console.log(numberOfWays[n-1]);
+ console.log('climbingStaircase ========', numberOfWays[n-1]);
 }
 // climbingStaircase(1);
-// climbingStaircase(2);
-// climbingStaircase(3);
+climbingStaircase(2);
+climbingStaircase(3);
 // climbingStaircase(4);
 // climbingStaircase(5);
 // climbingStaircase(10);
